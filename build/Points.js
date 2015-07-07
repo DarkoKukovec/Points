@@ -1,8 +1,8 @@
-/* Points - v0.1.1 - 2013-07-11
+/* Points - v0.1.2 - 2015-07-07
  * Another Pointer Events polyfill
 
  * http://rich-harris.github.io/Points
- * Copyright (c) 2013 Rich Harris; Released under the MIT License */
+ * Copyright (c) 2015 Rich Harris; Released under the MIT License */
 
 
 
@@ -27,7 +27,9 @@
 
 
 	// Pointer events supported? Great, nothing to do, let's go home
-	if ( window.onpointerdown !== undefined ) {
+	// Chrome 45 has window.onpointerdown, but dosn't wet support pointer events
+	// window.onpointerdown was replaced with document.body.setPointerCapture as a more reliable check
+	if ( !!document.body.setPointerCapture ) {
 		return;
 	}
 

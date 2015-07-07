@@ -19,7 +19,9 @@
 
 
 	// Pointer events supported? Great, nothing to do, let's go home
-	if ( window.onpointerdown !== undefined ) {
+	// Chrome 45 has window.onpointerdown, but dosn't wet support pointer events
+	// window.onpointerdown was replaced with document.body.setPointerCapture as a more reliable check
+	if ( !!document.body.setPointerCapture ) {
 		return;
 	}
 
